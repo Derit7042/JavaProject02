@@ -27,7 +27,7 @@ public class KakaoBookApi {
 
         Request request = new Request.Builder()
                 .url(urlBuilder.build())
-                .addHeader("Authorization", "KakaoAK" + API_KEY)
+                .addHeader("Authorization", "KakaoAK " + API_KEY)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
@@ -41,7 +41,7 @@ public class KakaoBookApi {
                 JsonObject bookJson = document.getAsJsonObject();
                 Book book = new Book(
                         bookJson.get("title").getAsString(),
-                        bookJson.get("author").getAsJsonArray().toString(),
+                        bookJson.get("authors").getAsJsonArray().toString(),
                         bookJson.get("publisher").getAsString(),
                         bookJson.get("thumbnail").getAsString()
                 );
